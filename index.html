@@ -23,7 +23,7 @@
                         <div class="card shadow">
                             <div class="card-body mt-3">
                                 <div class="input-group">
-                                    <input type="number" id="inputNum" class="form-control w-75 mx-auto border border-dark" placeholder="Please enter a number" disabled required>
+                                    <input type="text" id="inputNum" class="form-control w-75 mx-auto border border-dark" placeholder="Please enter a number" disabled required>
                                     <button class="btn btn-outline-dark" disabled id="guessBtn">Guess</button>
                                 </div>
 
@@ -86,6 +86,60 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" id="loseRestartBtn">Restart Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Choose a number from 0 to 100 modal -->
+<div class="modal fade" id="chooseModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+            <p class="text-center fs-1">❌</p>
+            <p class="text-center fs-3">Only choose a number from 0 to 100!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- cannot be a letter modal -->
+<div class="modal fade" id="letterModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+            <p class="text-center fs-1">❌</p>
+            <p class="text-center fs-3">Only type numbers!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- field cannot be empty modal -->
+<div class="modal fade" id="emptyModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+            <p class="text-center fs-1">❌</p>
+            <p class="text-center fs-3">Please enter something!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

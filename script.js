@@ -29,7 +29,7 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
         if(document.querySelector(`#inputNum`).value != ``){
             if(Number.isInteger(input)){
                 
-                if(input <= 100 || input >= 100){
+                if(input <= 100 && input != 101){
                     if(input === easyNum){
                         const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
                         document.querySelector("#guesses").innerHTML = ``
@@ -66,13 +66,13 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
                         guessCountEasy--;
                     }
                 }else{
-                    alert("Choose a number from 0 to 100! ❌"); //modal
+                    new bootstrap.Modal(document.getElementById('chooseModal')).show(); //modal
                 }
             }else{
-                alert("Input cannot be a Letter! ❌"); //modal
+                new bootstrap.Modal(document.getElementById('letterModal')).show(); //modal
             }
         }else{
-            alert("Field cannot be empty! ❌"); //modal
+            new bootstrap.Modal(document.getElementById('emptyModal')).show(); //modal
         };
     
         if(guessCountEasy === 0){
@@ -99,7 +99,7 @@ document.querySelector(`#moderateBtn`).addEventListener("click", ()=> {
         if(document.querySelector(`#inputNum`).value != ``){
             if(Number.isInteger(input)){
                 
-                if(input <= 100 || input >= 100){
+                if(input <= 100 && input != 101){
                     if(input === moderateNum){
                         const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'));
                         document.querySelector("#guesses").innerHTML = ``
@@ -137,13 +137,13 @@ document.querySelector(`#moderateBtn`).addEventListener("click", ()=> {
                         guessCountModerate--;
                     }
                 }else{
-                    alert("Choose a number from 0 to 100! ❌"); //modal
+                    new bootstrap.Modal(document.getElementById('chooseModal')).show(); //modal
                 }
             }else{
-                alert("Input cannot be a Letter! ❌"); //modal
+                new bootstrap.Modal(document.getElementById('letterModal')).show(); //modal
             }
         }else{
-            alert("Field cannot be empty! ❌"); //modal
+            new bootstrap.Modal(document.getElementById('emptyModal')).show(); //modal
         };
     
         if(guessCountModerate === 0){
@@ -170,7 +170,7 @@ document.querySelector(`#hardBtn`).addEventListener("click", ()=> {
         if(document.querySelector(`#inputNum`).value != ``){
             if(Number.isInteger(input)){
                 
-                if(input <= 100 || input >= 100){
+                if(input <= 100 && input != 101){
                     if(input === hardNum){
                         const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
                         document.querySelector("#guesses").innerHTML = ``
@@ -208,13 +208,13 @@ document.querySelector(`#hardBtn`).addEventListener("click", ()=> {
                         guessCountHard--;
                     }
                 }else{
-                    alert("Choose a number from 0 to 100! ❌"); //modal
+                    new bootstrap.Modal(document.getElementById('chooseModal')).show(); //modal
                 }
             }else{
-                alert("Input cannot be a Letter! ❌"); //modal
+                new bootstrap.Modal(document.getElementById('letterModal')).show(); //modal
             }
         }else{
-            alert("Field cannot be empty! ❌"); //modal
+            new bootstrap.Modal(document.getElementById('emptyModal')).show(); //modal
         };
     
         if(guessCountHard === 0){
