@@ -2,7 +2,7 @@ let easyNum = Math.floor(Math.random() * 5);
 let moderateNum = Math.floor(Math.random() * 50);
 let hardNum = Math.floor(Math.random() * 100);
 
-let guessCountEasy = 10;
+let guessCountEasy = 20;
 let guessCountModerate = 10;
 let guessCountHard = 5;
 
@@ -20,6 +20,8 @@ document.querySelector(`#musicOff`).addEventListener("click", () => {
 //choose Difficulty
 //Easy Diff
 document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
+
+    //adds a go back button each diff
     document.querySelector(`#buttons`).innerHTML = `
     <span class="d-flex justify-content-center flex-row" id="buttons">
         <span class="btn fs-4 me-5" id="goBack">🔙</span>
@@ -28,23 +30,40 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
     </span>
     `;
 
+    //refreshes the page to return to choose diff 
     document.querySelector(`#goBack`).addEventListener("click", () => {
         location.href = location.href;
     });
 
+    //enabled the input group
     document.querySelector(`#inputNum`).disabled = false;
     document.querySelector(`#guessBtn`).disabled = false;
+
+    //makes the #cardArea empty to make higher/lower show
     document.querySelector(`#cardArea`).innerHTML = '';
 
+    //guessBtn listener to submit the inputed number in the form
     document.querySelector(`#guessBtn`).addEventListener("click", () => {
+        
+        //checks if the input is an integer
         let input = parseInt(document.querySelector(`#inputNum`).value);
+
+        //checks if the input is not empty
         if(document.querySelector(`#inputNum`).value != ``){
+
+            //checks if the input is an integer
             if(Number.isInteger(input)){
                 
+                //checks input to not pass 100
                 if(input <= 100 && input != 101){
+
+                    //if the input is equal to the generated number then it will pop-up a winnder modal and ends the game
                     if(input === easyNum){
+
+                        //winner modal
                         const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
-                        document.querySelector("#guesses").innerHTML = ``
+
+                        //shows that the player has won and display it to cardArea
                         document.querySelector(`#cardArea`).innerHTML = `
                         <div>
                             <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🎉 You Won!</p>
@@ -52,9 +71,12 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
                         </div>
                         `;
 
+                        //restartbtn to refresh the game
                         document.querySelector(`#restartBtn`).addEventListener("click", () => {
                             location.href = location.href
                         });
+
+                        //function to show winner modal
                         winnerModal.show();
                     } else if(input > easyNum){
                         document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountEasy-1}</p>`
