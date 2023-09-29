@@ -1,18 +1,19 @@
+//random numbers for each difficulty
 let easyNum = Math.floor(Math.random() * 5);
 let moderateNum = Math.floor(Math.random() * 50);
 let hardNum = Math.floor(Math.random() * 100);
 
+//guesscounts for each difficulty
 let guessCountEasy = 20;
 let guessCountModerate = 10;
 let guessCountHard = 5;
 
+//music functions
 let x = document.querySelector(`#bg-music`);
 x.play();
-
 document.querySelector(`#musicOn`).addEventListener("click", () => {
     x.play()
 });
-
 document.querySelector(`#musicOff`).addEventListener("click", () => {
     x.pause()
 });
@@ -21,7 +22,7 @@ document.querySelector(`#musicOff`).addEventListener("click", () => {
 //Easy Diff
 document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
 
-    //adds a go back button each diff
+    //adds a go back button each diff and music on and off buttons
     document.querySelector(`#buttons`).innerHTML = `
     <span class="d-flex justify-content-center flex-row" id="buttons">
         <span class="btn fs-4 me-5" id="goBack">🔙</span>
@@ -63,7 +64,7 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
                         //winner modal
                         const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
 
-                        //shows that the player has won and display it to cardArea
+                        //tells the user that he won the game
                         document.querySelector(`#cardArea`).innerHTML = `
                         <div>
                             <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🎉 You Won!</p>
@@ -78,15 +79,24 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
 
                         //function to show winner modal
                         winnerModal.show();
+
+                        //else if to checks if the input number is greater than the generated number
                     } else if(input > easyNum){
+                        //checks how many guesses remaining to player
                         document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountEasy-1}</p>`
+                        
+                        //tells the user lower
                         document.querySelector(`#cardArea`).innerHTML = `
                         <div>
                             <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔻Lower!</p>
                             <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
                         </div>
                         `;
+
+                        //refreshes the input value everytime the user pressed the guess button
                         document.querySelector(`#inputNum`).value = '';
+
+                        //to subtract the players tries
                         guessCountEasy--;
                     } else if(input < easyNum){
                         document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountEasy-1}</p>`
