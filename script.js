@@ -20,6 +20,18 @@ document.querySelector(`#musicOff`).addEventListener("click", () => {
 //choose Difficulty
 //Easy Diff
 document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
+    document.querySelector(`#buttons`).innerHTML = `
+    <span class="d-flex justify-content-center flex-row" id="buttons">
+        <span class="btn fs-4 me-5" id="goBack">🔙</span>
+        <span class="btn fs-4 me-5" id="musicOn">🔊</span>
+        <span class="btn fs-4" id="musicOff">🔇</span>
+    </span>
+    `;
+
+    document.querySelector(`#goBack`).addEventListener("click", () => {
+        location.href = location.href;
+    });
+
     document.querySelector(`#inputNum`).disabled = false;
     document.querySelector(`#guessBtn`).disabled = false;
     document.querySelector(`#cardArea`).innerHTML = '';
@@ -90,6 +102,18 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
 
 //Moderate Diff
 document.querySelector(`#moderateBtn`).addEventListener("click", ()=> {
+    document.querySelector(`#buttons`).innerHTML = `
+    <span class="d-flex justify-content-center flex-row" id="buttons">
+        <span class="btn fs-4 me-5" id="goBack">🔙</span>
+        <span class="btn fs-4 me-5" id="musicOn">🔊</span>
+        <span class="btn fs-4" id="musicOff">🔇</span>
+    </span>
+    `;
+
+    document.querySelector(`#goBack`).addEventListener("click", () => {
+        location.href = location.href;
+    });
+
     document.querySelector(`#inputNum`).disabled = false;
     document.querySelector(`#guessBtn`).disabled = false;
     document.querySelector(`#cardArea`).innerHTML = '';
@@ -161,6 +185,18 @@ document.querySelector(`#moderateBtn`).addEventListener("click", ()=> {
 
 //Hard Diff
 document.querySelector(`#hardBtn`).addEventListener("click", ()=> {
+    document.querySelector(`#buttons`).innerHTML = `
+    <span class="d-flex justify-content-center flex-row" id="buttons">
+        <span class="btn fs-4 me-5" id="goBack">🔙</span>
+        <span class="btn fs-4 me-5" id="musicOn">🔊</span>
+        <span class="btn fs-4" id="musicOff">🔇</span>
+    </span>
+    `;
+
+    document.querySelector(`#goBack`).addEventListener("click", () => {
+        location.href = location.href;
+    });
+
     document.querySelector(`#inputNum`).disabled = false;
     document.querySelector(`#guessBtn`).disabled = false;
     document.querySelector(`#cardArea`).innerHTML = '';
