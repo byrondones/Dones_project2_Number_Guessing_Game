@@ -1,6 +1,6 @@
 let Num = Math.floor(Math.random() * 5);
 
-let guessCountEasy = 15;
+let guessCountEasy = 2;
 let guessCountModerate = 10;
 let guessCountHard = 5;
 
@@ -16,7 +16,7 @@ document.querySelector(`#musicOff`).addEventListener("click", () => {
 });
 
 //choose Difficulty
-//Ease Diff
+//Easy Diff
 document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
     document.querySelector(`#inputNum`).disabled = false;
     document.querySelector(`#guessBtn`).disabled = false;
@@ -29,6 +29,7 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
                 
                 if(input <= 100 || input >= 100){
                     if(input === Num){
+                        const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
                         document.querySelector("#guesses").innerHTML = ``
                         document.querySelector(`#cardArea`).innerHTML = `
                         <div>
@@ -36,6 +37,8 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
                             <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
                         </div>
                         `;
+
+                        winnerModal.show();
                     } else if(input > Num){
                         document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountEasy-1}</p>`
                         document.querySelector(`#cardArea`).innerHTML = `
@@ -68,8 +71,11 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
         };
     
         if(guessCountEasy === 0){
-            alert("Game Over!");
-            location.href = location.href
+            document.querySelector(`#restartBtn`).addEventListener("click", () => {
+                location.href = location.href
+            });
+            
+            new bootstrap.Modal(document.getElementById('loseModal')).show();
         };
     
         document.querySelector(`#cardArea`).value = '';
@@ -91,6 +97,7 @@ document.querySelector(`#moderateBtn`).addEventListener("click", ()=> {
                 
                 if(input <= 100 || input >= 100){
                     if(input === Num){
+                        const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'));
                         document.querySelector("#guesses").innerHTML = ``
                         document.querySelector(`#cardArea`).innerHTML = `
                         <div>
@@ -98,6 +105,7 @@ document.querySelector(`#moderateBtn`).addEventListener("click", ()=> {
                             <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
                         </div>
                         `;
+                        winnerModal.show();
                     } else if(input > Num){
                         document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountModerate-1}</p>`
                         document.querySelector(`#cardArea`).innerHTML = `
@@ -130,8 +138,11 @@ document.querySelector(`#moderateBtn`).addEventListener("click", ()=> {
         };
     
         if(guessCountModerate === 0){
-            alert("Game Over!");
-            location.href = location.href
+            document.querySelector(`#restartBtn`).addEventListener("click", () => {
+                location.href = location.href
+            });
+            
+            new bootstrap.Modal(document.getElementById('loseModal')).show();
         };
     
         document.querySelector(`#cardArea`).value = '';
@@ -152,6 +163,7 @@ document.querySelector(`#hardBtn`).addEventListener("click", ()=> {
                 
                 if(input <= 100 || input >= 100){
                     if(input === Num){
+                        const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
                         document.querySelector("#guesses").innerHTML = ``
                         document.querySelector(`#cardArea`).innerHTML = `
                         <div>
@@ -159,6 +171,7 @@ document.querySelector(`#hardBtn`).addEventListener("click", ()=> {
                             <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
                         </div>
                         `;
+                        winnerModal.show();
                     } else if(input > Num){
                         document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountHard-1}</p>`
                         document.querySelector(`#cardArea`).innerHTML = `
@@ -191,8 +204,11 @@ document.querySelector(`#hardBtn`).addEventListener("click", ()=> {
         };
     
         if(guessCountHard === 0){
-            alert("Game Over!");
-            location.href = location.href
+            document.querySelector(`#restartBtn`).addEventListener("click", () => {
+                location.href = location.href
+            });
+
+            new bootstrap.Modal(document.getElementById('loseModal')).show();
         };
     
         document.querySelector(`#cardArea`).value = '';
