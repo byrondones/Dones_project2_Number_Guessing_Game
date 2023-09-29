@@ -2,7 +2,7 @@ let easyNum = Math.floor(Math.random() * 5);
 let moderateNum = Math.floor(Math.random() * 50);
 let hardNum = Math.floor(Math.random() * 100);
 
-let guessCountEasy = 5;
+let guessCountEasy = 10;
 let guessCountModerate = 10;
 let guessCountHard = 5;
 
