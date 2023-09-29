@@ -98,35 +98,52 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
 
                         //to subtract the players tries
                         guessCountEasy--;
+
+                        //else if to checks if the input number is greater than the generated number
                     } else if(input < easyNum){
+
+                        //checks how many guesses remaining to player
                         document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountEasy-1}</p>`
+                       
+                        //tells the user higher
                         document.querySelector(`#cardArea`).innerHTML = `
                         <div>
                             <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔺Higher!</p>
                             <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
                         </div>
                         `;
+                        //refreshes the input value everytime the user pressed the guess button
                         document.querySelector(`#inputNum`).value = '';
+
+                        //to subtract the players tries
                         guessCountEasy--;
                     }
                 }else{
-                    new bootstrap.Modal(document.getElementById('chooseModal')).show(); //modal
+                    //displays the Only Choose a warning Modal
+                    new bootstrap.Modal(document.getElementById('chooseModal')).show();
                 }
             }else{
-                new bootstrap.Modal(document.getElementById('letterModal')).show(); //modal
+                //displays the number only modal
+                new bootstrap.Modal(document.getElementById('letterModal')).show();
             }
         }else{
-            new bootstrap.Modal(document.getElementById('emptyModal')).show(); //modal
+            //displays the field cannot be empty modal
+            new bootstrap.Modal(document.getElementById('emptyModal')).show();
         };
     
+        //if the guesscount is equal to zero then the game is over
         if(guessCountEasy === 0){
+
+            //displays the lose modal
             new bootstrap.Modal(document.getElementById('loseModal')).show();
 
+            //restart button that refreshes the pages
             document.querySelector(`#loseRestartBtn`).addEventListener("click", () => {
                 location.href = location.href
             });
         };
-    
+        
+        //makes the starting fields empty
         document.querySelector(`#cardArea`).value = '';
         document.querySelector(`#inputNum`).value = '';
     });
