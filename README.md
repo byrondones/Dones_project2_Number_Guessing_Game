@@ -14,6 +14,8 @@ The Number Guessing Game is a simple web-based game where you have to guess a ra
    - A message indicating if you've won, lost, or are still playing
    - Input field to enter your guess
    - A button to submit your guess
+   - A indication if its higher or lower
+   - The number of tries to guess the number
    - A button to start a new game
 3. Enter your guess in the input field.
 4. Click the "Submit" button to submit your guess.
