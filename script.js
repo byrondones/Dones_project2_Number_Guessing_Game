@@ -58,13 +58,13 @@ document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
                 //checks input to not pass 100
                 if(input <= 100 && input != 101){
 
-                    //if the input is equal to the generated number then it will pop-up a winnder modal and ends the game
+                    //if the input is equal to the generated number then it will pop-up a winner modal and ends the game
                     if(input === easyNum){
 
-                        //winner modal
+                        //getting winner modal from html file
                         const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
 
-                        //tells the user that he won the game
+                        //tells the user that he/she won the game
                         document.querySelector(`#cardArea`).innerHTML = `
                         <div>
                             <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🎉 You Won!</p>
