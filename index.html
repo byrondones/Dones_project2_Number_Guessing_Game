@@ -10,34 +10,42 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <h1 class="fw-bold text-center">🔢 Number Guessing Game</h1>
-                <p class="text-center">🎲 Is a game to test your luck if you can guess the random number!</p>
-                <span class="d-flex justify-content-center flex-row" id="buttons">
-                    <span class="btn fs-4 me-5" id="musicOn">🔊</span>
-                    <span class="btn fs-4" id="musicOff">🔇</span>
-                </span>
-
-                <div class="row mt-5">
-                    <div class="col-md-6 mx-auto">
-                        <div class="card shadow">
-                            <div class="card-body mt-3">
-                                <div class="input-group">
-                                    <input type="text" id="inputNum" class="form-control w-75 mx-auto border border-dark" placeholder="Please enter a number" disabled required>
-                                    <button class="btn btn-outline-dark" disabled id="guessBtn">Guess</button>
-                                </div>
-
-                                <p class="text-center fs-5 fw-medium mt-4" id="guesses"></p>
-                                <hr class="mt-4">
-
-                                <div class="card mx-auto">
-                                    <div class="card-body" id="cardArea">
-
-                                        <div class="d-flex justify-content-evenly mt-5 mb-5">
-                                            <button class="btn btn-dark btn-lg" id="easyBtn">Easy</button>
-                                            <button class="btn btn-dark btn-lg" id="moderateBtn">Moderate</button>
-                                            <button class="btn btn-dark btn-lg" id="hardBtn">Hard</button>
+        <div class="row">
+            <div class="col-md-6 mx-auto" style="margin-top: 150px;">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <h1 class="fw-bold text-center">🔢 Number Guessing Game</h1>
+                                <p class="text-center">🎲 Is a game to test your luck if you can guess the random number!</p>
+                                <span class="d-flex justify-content-center flex-row" id="buttons">
+                                    <span class="btn fs-4 me-5" id="musicOn">🔊</span>
+                                    <span class="btn fs-4" id="musicOff">🔇</span>
+                                </span>
+                
+                                <div class="row mt-5">
+                                    <div class="col-md-12 mx-auto">
+                                        <div class="card shadow-sm">
+                                            <div class="card-body mt-3">
+                                                <div class="input-group">
+                                                    <input type="text" id="inputNum" class="form-control w-75 mx-auto border border-dark" placeholder="Please enter a number" disabled required>
+                                                    <button class="btn btn-outline-dark" disabled id="guessBtn">Guess</button>
+                                                </div>
+                
+                                                <p class="text-center fs-5 fw-medium mt-4" id="guesses"></p>
+                                                <hr class="mt-4">
+                
+                                                <div class="card mx-auto">
+                                                    <div class="card-body" id="cardArea">
+                
+                                                        <div class="d-flex justify-content-evenly mt-5 mb-5">
+                                                            <button class="btn btn-dark btn-lg" id="easyBtn">Easy</button>
+                                                            <button class="btn btn-dark btn-lg" id="moderateBtn">Moderate</button>
+                                                            <button class="btn btn-dark btn-lg" id="hardBtn">Hard</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -46,6 +54,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
