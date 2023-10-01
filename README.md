@@ -33,4 +33,4 @@ If you encounter any issues while playing the game or have suggestions for impro
 
 Enjoy playing the Number Guessing Game! Have fun trying to beat the odds and guess the correct number. Good luck!
 
-# Developed by Byron Oscar Dones
+# Developed by Byron Oscar Dones & Jessica Shaine Santos
