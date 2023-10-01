@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Guessing Game</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-black">
+  <div class="container-fluid mt-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card shadow">
+          <div class="card-body">
+            <span class="btn fs-5" id="musicOn">🔊</span>
+            <span class="btn fs-5" id="musicOff">🔇</span>
+            <div class="row mt-5">
+              <div class="col-md-12">
+                <h1 class="fw-bold text-center">Number Guessing Game 🔢</h1>
+                <p class="text-center">Is a game to test your luck if you can guess the random number!</p>
+                <span class="d-flex justify-content-center flex-row" id="buttons">
+
+                </span>
+
+                <div class="row mt-5">
+                  <div class="col-md-12 mx-auto">
+                    <div class="card shadow-sm">
+                      <div class="card-body mt-3">
+                        <div class="input-group">
+                          <input type="text" id="inputNum" class="form-control w-75 mx-auto border border-dark"
+                            placeholder="Please enter a number" disabled required>
+                          <button class="btn btn-outline-dark" disabled id="guessBtn">Guess</button>
+                        </div>
+
+                        <p class="text-center fs-5 fw-medium mt-4" id="guesses"></p>
+                        <hr class="mt-4">
+
+                        <div class="card mx-auto">
+                          <div class="card-body text-center" id="cardArea">
+
+                            <button
+                              class="btn btn-danger text-light rounded-pill px-4 me-3 mb-3" id="easyBtn">Easy</button>
+                            <div>
+                              <button
+                                class="btn btn-danger text-light rounded-pill px-4 me-3 mb-3"
+                                id="moderateBtn">Moderate</button>
+                              <div></div>
+                              <button class="btn btn-danger text-light rounded-pill px-4 me-3"
+                                id="hardBtn">Hard</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <audio id="bg-music">
+              <source src="de Blob - Blissful.mp3" type="audio/mp3">
+            </audio>
+
+            <!-- Modal Winner -->
+            <div class="modal fade" id="winnerModal">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body fs-1 text-center">
+                    You Won! 🎉🥂🍾
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="restartBtn">Want to play again?</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal Lose -->
+            <div class="modal fade" id="loseModal">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    ❌ Game Over!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="loseRestartBtn">Restart Game</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Choose a number from 0 to 100 modal -->
+            <div class="modal fade" id="chooseModal">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p class="text-center fs-1">❌</p>
+                    <p class="text-center fs-3">Only choose a number from 0 to 100!</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- cannot be a letter modal -->
+            <div class="modal fade" id="letterModal">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p class="text-center fs-1">❌</p>
+                    <p class="text-center fs-3">Only type numbers!</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- field cannot be empty modal -->
+            <div class="modal fade" id="emptyModal">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p class="text-center fs-1">❌</p>
+                    <p class="text-center fs-3">Please enter something!</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <footer class="text-center mt-5 text-light">Developed by <b>Byron Oscar Dones</b></footer>
+
+            <script src="script.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+              integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+              crossorigin="anonymous"></script>
+</body>
+
+</html>

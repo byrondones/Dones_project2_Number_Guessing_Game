@@ -1,317 +1,111 @@
-//random numbers for each difficulty
-let easyNum = Math.floor(Math.random() * 5);
-let moderateNum = Math.floor(Math.random() * 50);
-let hardNum = Math.floor(Math.random() * 100);
+const difficulties = {
+  easy: { num: Math.floor(Math.random() * 5), guessCount: 20 }, //random number between 0 and 4, and 20
+  moderate: { num: Math.floor(Math.random() * 50), guessCount: 10 }, //random number between 0 and 49, and 10 guesses
+  hard: { num: Math.floor(Math.random() * 100), guessCount: 5 }, //random number between 0 and 99, and 5 guesses
 
-//guesscounts for each difficulty
-let guessCountEasy = 20;
-let guessCountModerate = 10;
-let guessCountHard = 5;
+  //pwede mo palitan yung makatotohanan wahahahaha
+};
 
-//music functions
-let x = document.querySelector(`#bg-music`);
-x.play();
-document.querySelector(`#musicOn`).addEventListener("click", () => {
-    x.play()
-});
-document.querySelector(`#musicOff`).addEventListener("click", () => {
-    x.pause()
-});
+//stores difficulty level
+let currentDifficulty = null;
+//stores guesses remaining
+let guessCount = 0;
 
-//choose Difficulty
-//Easy Diff
-document.querySelector(`#easyBtn`).addEventListener("click", ()=> {
+//dom elements
+const music = document.querySelector("#bg-music");
+const musicOnBtn = document.querySelector("#musicOn");
+const musicOffBtn = document.querySelector("#musicOff");
+const inputNum = document.querySelector("#inputNum");
+const guessBtn = document.querySelector("#guessBtn");
+const cardArea = document.querySelector("#cardArea");
+const guessesText = document.querySelector("#guesses");
 
-    //adds a go back button each diff and music on and off buttons
-    document.querySelector(`#buttons`).innerHTML = `
-    <span class="d-flex justify-content-center flex-row" id="buttons">
-        <span class="btn fs-4 me-5" id="goBack">🔙</span>
-        <span class="btn fs-4 me-5" id="musicOn">🔊</span>
-        <span class="btn fs-4" id="musicOff">🔇</span>
-    </span>
-    `;
+//set difficulty
+function setDifficulty(difficulty) {
+  currentDifficulty = difficulties[difficulty]; //pick difficulty
+  inputNum.disabled = false; //enable input field
+  guessBtn.disabled = false; //activate guess button
+  cardArea.innerHTML = ""; //clear input field
+  guessCount = currentDifficulty.guessCount; //update the guessCount to reflect the allowed number of tries for difficulty
+  guessesText.textContent = `Tries Remaining: ${guessCount}`;
+}
 
-    //refreshes the page to return to choose diff 
-    document.querySelector(`#goBack`).addEventListener("click", () => {
-        location.href = location.href;
-    });
+function checkGuess() {
+  const input = inputNum.value.trim();
 
-    //enabled the input group
-    document.querySelector(`#inputNum`).disabled = false;
-    document.querySelector(`#guessBtn`).disabled = false;
+  if (input === "") {
+    //if input is empty
+    const emptyModal = new bootstrap.Modal(
+      document.getElementById("emptyModal")
+    );
+    emptyModal.show();
+    return;
+  }
 
-    //makes the #cardArea empty to make higher/lower show
-    document.querySelector(`#cardArea`).innerHTML = '';
+  const inputValue = parseInt(input);
 
-    //guessBtn listener to submit the inputed number in the form
-    document.querySelector(`#guessBtn`).addEventListener("click", () => {
-        
-        //checks if the input is an integer
-        let input = parseInt(document.querySelector(`#inputNum`).value);
+  if (isNaN(inputValue)) {
+    //if not a number
+    const letterModal = new bootstrap.Modal(
+      document.getElementById("letterModal")
+    );
+    letterModal.show();
+    inputNum.value = "";
+    return;
+  }
 
-        //checks if the input is not empty
-        if(document.querySelector(`#inputNum`).value != ``){
+  if (inputValue < 0 || inputValue > 100) {
+    // out of range
+    const chooseModal = new bootstrap.Modal(
+      document.getElementById("chooseModal")
+    );
+    chooseModal.show();
+    inputNum.value = "";
+    return;
+  }
+  guessCount--;
 
-            //checks if the input is an integer
-            if(Number.isInteger(input)){
-                
-                //checks input to not pass 100
-                if(input <= 100 && input != 101){
+  if (inputValue === currentDifficulty.num) {
+    //if correct
+    cardArea.innerHTML = `<div><p class="text-center fw-bold mt-4" style="font-size: 3rem;">🎉 You Won!</p><p class="text-center fw-bold" style="font-size: 10rem;">${inputValue}</p></div>`;
+    const winnerModal = new bootstrap.Modal(
+      document.getElementById("winnerModal")
+    );
+    winnerModal.show();
+  } else if (inputValue > currentDifficulty.num) {
+    cardArea.innerHTML = `<div><p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔻Lower!</p><p class="text-center fw-bold" style="font-size: 10rem;">${inputValue}</p></div>`;
+  } else if (inputValue < currentDifficulty.num) {
+    cardArea.innerHTML = `<div><p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔺Higher!</p><p class="text-center fw-bold" style="font-size: 10rem;">${inputValue}</p></div>`;
+  }
 
-                    //if the input is equal to the generated number then it will pop-up a winner modal and ends the game
-                    if(input === easyNum){
+  inputNum.value = "";
+  guessesText.textContent = `Tries Remaining: ${guessCount}`;
 
-                        //getting winner modal from html file
-                        const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
+  if (guessCount === 0) {
+    //run out of guesses
+    const loseModal = new bootstrap.Modal(document.getElementById("loseModal"));
+    loseModal.show();
+  }
+}
 
-                        //tells the user that he/she won the game
-                        document.querySelector(`#cardArea`).innerHTML = `
-                        <div>
-                            <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🎉 You Won!</p>
-                            <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
-                        </div>
-                        `;
+//reset game
+function resetGame() {
+  window.location.href = "index.html";
+}
 
-                        //restartbtn to refresh the game
-                        document.querySelector(`#restartBtn`).addEventListener("click", () => {
-                            location.href = location.href
-                        });
-
-                        //function to show winner modal
-                        winnerModal.show();
-
-                        //else if to checks if the input number is greater than the generated number
-                    } else if(input > easyNum){
-                        //checks how many guesses remaining to player
-                        document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountEasy-1}</p>`
-                        
-                        //tells the user lower
-                        document.querySelector(`#cardArea`).innerHTML = `
-                        <div>
-                            <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔻Lower!</p>
-                            <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
-                        </div>
-                        `;
-
-                        //refreshes the input value everytime the user pressed the guess button
-                        document.querySelector(`#inputNum`).value = '';
-
-                        //to subtract the players tries
-                        guessCountEasy--;
-
-                        //else if to checks if the input number is greater than the generated number
-                    } else if(input < easyNum){
-
-                        //checks how many guesses remaining to player
-                        document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountEasy-1}</p>`
-                       
-                        //tells the user higher
-                        document.querySelector(`#cardArea`).innerHTML = `
-                        <div>
-                            <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔺Higher!</p>
-                            <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
-                        </div>
-                        `;
-                        //refreshes the input value everytime the user pressed the guess button
-                        document.querySelector(`#inputNum`).value = '';
-
-                        //to subtract the players tries
-                        guessCountEasy--;
-                    }
-                }else{
-                    //displays the Only Choose a warning Modal
-                    new bootstrap.Modal(document.getElementById('chooseModal')).show();
-                }
-            }else{
-                //displays the number only modal
-                new bootstrap.Modal(document.getElementById('letterModal')).show();
-            }
-        }else{
-            //displays the field cannot be empty modal
-            new bootstrap.Modal(document.getElementById('emptyModal')).show();
-        };
-    
-        //if the guesscount is equal to zero then the game is over
-        if(guessCountEasy === 0){
-
-            //displays the lose modal
-            new bootstrap.Modal(document.getElementById('loseModal')).show();
-
-            //restart button that refreshes the pages
-            document.querySelector(`#loseRestartBtn`).addEventListener("click", () => {
-                location.href = location.href
-            });
-        };
-        
-        //makes the starting fields empty
-        document.querySelector(`#cardArea`).value = '';
-        document.querySelector(`#inputNum`).value = '';
-    });
-});
-
-//Moderate Diff
-document.querySelector(`#moderateBtn`).addEventListener("click", ()=> {
-    document.querySelector(`#buttons`).innerHTML = `
-    <span class="d-flex justify-content-center flex-row" id="buttons">
-        <span class="btn fs-4 me-5" id="goBack">🔙</span>
-        <span class="btn fs-4 me-5" id="musicOn">🔊</span>
-        <span class="btn fs-4" id="musicOff">🔇</span>
-    </span>
-    `;
-
-    document.querySelector(`#goBack`).addEventListener("click", () => {
-        location.href = location.href;
-    });
-
-    document.querySelector(`#inputNum`).disabled = false;
-    document.querySelector(`#guessBtn`).disabled = false;
-    document.querySelector(`#cardArea`).innerHTML = '';
-
-    document.querySelector(`#guessBtn`).addEventListener("click", () => {
-        let input = parseInt(document.querySelector(`#inputNum`).value);
-        if(document.querySelector(`#inputNum`).value != ``){
-            if(Number.isInteger(input)){
-                
-                if(input <= 100 && input != 101){
-                    if(input === moderateNum){
-                        const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'));
-                        document.querySelector("#guesses").innerHTML = ``
-                        document.querySelector(`#cardArea`).innerHTML = `
-                        <div>
-                            <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🎉 You Won!</p>
-                            <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
-                        </div>
-                        `;
-
-                        document.querySelector(`#restartBtn`).addEventListener("click", () => {
-                            location.href = location.href
-                        });
-
-                        winnerModal.show();
-                    } else if(input > moderateNum){
-                        document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountModerate-1}</p>`
-                        document.querySelector(`#cardArea`).innerHTML = `
-                        <div>
-                            <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔻Lower!</p>
-                            <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
-                        </div>
-                        `;
-                        document.querySelector(`#inputNum`).value = '';
-                        guessCountModerate--;
-                    } else if(input < moderateNum){
-                        document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountModerate-1}</p>`
-                        document.querySelector(`#cardArea`).innerHTML = `
-                        <div>
-                            <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔺Higher!</p>
-                            <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
-                        </div>
-                        `;
-                        document.querySelector(`#inputNum`).value = '';
-                        guessCountModerate--;
-                    }
-                }else{
-                    new bootstrap.Modal(document.getElementById('chooseModal')).show(); //modal
-                }
-            }else{
-                new bootstrap.Modal(document.getElementById('letterModal')).show(); //modal
-            }
-        }else{
-            new bootstrap.Modal(document.getElementById('emptyModal')).show(); //modal
-        };
-    
-        if(guessCountModerate === 0){
-            new bootstrap.Modal(document.getElementById('loseModal')).show();
-
-            document.querySelector(`#loseRestartBtn`).addEventListener("click", () => {
-                location.href = location.href
-            });
-        };
-    
-        document.querySelector(`#cardArea`).value = '';
-        document.querySelector(`#inputNum`).value = '';
-    });
-});
-
-//Hard Diff
-document.querySelector(`#hardBtn`).addEventListener("click", ()=> {
-    document.querySelector(`#buttons`).innerHTML = `
-    <span class="d-flex justify-content-center flex-row" id="buttons">
-        <span class="btn fs-4 me-5" id="goBack">🔙</span>
-        <span class="btn fs-4 me-5" id="musicOn">🔊</span>
-        <span class="btn fs-4" id="musicOff">🔇</span>
-    </span>
-    `;
-
-    document.querySelector(`#goBack`).addEventListener("click", () => {
-        location.href = location.href;
-    });
-
-    document.querySelector(`#inputNum`).disabled = false;
-    document.querySelector(`#guessBtn`).disabled = false;
-    document.querySelector(`#cardArea`).innerHTML = '';
-    
-    document.querySelector(`#guessBtn`).addEventListener("click", () => {
-        let input = parseInt(document.querySelector(`#inputNum`).value);
-        if(document.querySelector(`#inputNum`).value != ``){
-            if(Number.isInteger(input)){
-                
-                if(input <= 100 && input != 101){
-                    if(input === hardNum){
-                        const winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'))
-                        document.querySelector("#guesses").innerHTML = ``
-                        document.querySelector(`#cardArea`).innerHTML = `
-                        <div>
-                            <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🎉 You Won!</p>
-                            <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
-                        </div>
-                        `;
-
-                        document.querySelector(`#restartBtn`).addEventListener("click", () => {
-                            location.href = location.href
-                        });
-
-                        winnerModal.show();
-                    } else if(input > hardNum){
-                        document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountHard-1}</p>`
-                        document.querySelector(`#cardArea`).innerHTML = `
-                        <div>
-                            <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔻Lower!</p>
-                            <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
-                        </div>
-                        `;
-                        document.querySelector(`#inputNum`).value = '';
-                        guessCountHard--;
-                    } else if(input < hardNum){
-                        document.querySelector("#guesses").innerHTML = `<p class="fs-5 fw-medium text-center mt-4" id="guesses">Tries Remaining: ${guessCountHard-1}</p>`
-                        document.querySelector(`#cardArea`).innerHTML = `
-                        <div>
-                            <p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔺Higher!</p>
-                            <p class="text-center fw-bold" style="font-size: 10rem;">${input}</p>
-                        </div>
-                        `;
-                        document.querySelector(`#inputNum`).value = '';
-                        guessCountHard--;
-                    }
-                }else{
-                    new bootstrap.Modal(document.getElementById('chooseModal')).show(); //modal
-                }
-            }else{
-                new bootstrap.Modal(document.getElementById('letterModal')).show(); //modal
-            }
-        }else{
-            new bootstrap.Modal(document.getElementById('emptyModal')).show(); //modal
-        };
-    
-        if(guessCountHard === 0){
-            new bootstrap.Modal(document.getElementById('loseModal')).show();
-
-            document.querySelector(`#loseRestartBtn`).addEventListener("click", () => {
-                location.href = location.href
-            });
-
-        };
-    
-        document.querySelector(`#cardArea`).value = '';
-        document.querySelector(`#inputNum`).value = '';
-    });
-});
+//event listeners
+music.play();
+musicOnBtn.addEventListener("click", () => music.play());
+musicOffBtn.addEventListener("click", () => music.pause());
+document
+  .querySelector("#easyBtn")
+  .addEventListener("click", () => setDifficulty("easy"));
+document
+  .querySelector("#moderateBtn")
+  .addEventListener("click", () => setDifficulty("moderate"));
+document
+  .querySelector("#hardBtn")
+  .addEventListener("click", () => setDifficulty("hard"));
+guessBtn.addEventListener("click", checkGuess);
+document.querySelector("#loseRestartBtn").addEventListener("click", resetGame);
+document.querySelector("#restartBtn").addEventListener("click", resetGame);
