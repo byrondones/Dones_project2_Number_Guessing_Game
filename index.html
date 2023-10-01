@@ -1,68 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Number Guessing Game</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <body class="bg-black">
-        <div class="landing container-sm pt-5">   
-            <div class="welcomeText pt-5">
-                <h1 class="fw-bold text-center text-light">Welcome to the <br> Ultimate Number Guessing <br> Game!</h1>  
-            </div>                  
-            
-            <div class="playButton text-center pt-5">
-                <a class="btn btn-danger text-light rounded-pill px-4 me-3" href="game-page-2.html">PLAY NOW!</a>
-<button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    How to play
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Read:</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            1. You'll see the game interface, which includes:
-            <br>- The game's choosing difficulty screen
-            <br>- A message indicating if you've won, lost, or are still playing
-            <br>- Input field to enter your guess
-            <br>- A button to submit your guess
-            <br>- A indication if its higher or lower
-            <br>- The number of tries to guess the number
-            <br>- A button to start a new game
-            <br>2. Enter your guess in the input field.
-            <br>3. Click the "Submit" button to submit your guess.
-            <br>4. The game will provide feedback, telling you if your guess is too high or too low.
-            <br>5. Keep guessing until you correctly guess the hidden number or decide to start a new game.
-            <br>6. If you win, the game will congratulate you and display a winner modal to tell you that you won and want to restart the game
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Got it</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Number Guessing Game</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <body class="bg-black">
+    <div class="landing container-sm pt-5">
+      <div class="welcomeText pt-5">
+        <h1 class="fw-bold text-center text-light">Welcome to the <br> Ultimate Number Guessing <br> Game!</h1>
+      </div>
+
+      <div class="text-center pt-5">
+        <a class="btn btn-danger text-light rounded-pill px-4 me-3" href="game-page-2.html">PLAY NOW!</a>
+        <br>
+        <button type="button" class="btn btn-primary text-light rounded-pill px-4 me-3n-primary text-light rounded-pill px-4 me-3 mt-4" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+          How to play
+        </button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Read:</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              1. You'll see the game interface, which includes:
+              <br>- The game's choosing difficulty screen
+              <br>- A message indicating if you've won, lost, or are still playing
+              <br>- Input field to enter your guess
+              <br>- A button to submit your guess
+              <br>- A indication if its higher or lower
+              <br>- The number of tries to guess the number
+              <br>- A button to start a new game
+              <br>2. Enter your guess in the input field.
+              <br>3. Click the "Submit" button to submit your guess.
+              <br>4. The game will provide feedback, telling you if your guess is too high or too low.
+              <br>5. Keep guessing until you correctly guess the hidden number or decide to start a new game.
+              <br>6. If you win, the game will congratulate you and display a winner modal to tell you that you won and
+              want to restart the game
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Got it</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-            </div>
 
-            <div class="img-section d-flex justify-content-center">
-                <img src="https://i.pinimg.com/originals/a4/40/49/a4404915bb27f6e1e2814babedcc3d9b.gif" class="img-fluid pt-5 " alt="">
-            </div>
-        </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    <div class="img-section d-flex justify-content-center">
+      <img src="https://i.pinimg.com/originals/a4/40/49/a4404915bb27f6e1e2814babedcc3d9b.gif" class="img-fluid pt-5 "
+        alt="">
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
   </body>
+
 </html>

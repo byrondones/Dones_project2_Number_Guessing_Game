@@ -11,22 +11,23 @@
 </head>
 
 <body class="bg-black">
-  <div class="container-fluid mt-5">
+  <div class="containerGuess container-fluid mt-5">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="card shadow">
           <div class="card-body">
+            <a href="game-page-2.html" class="btn fs-5">🔙</a>
             <span class="btn fs-5" id="musicOn">🔊</span>
             <span class="btn fs-5" id="musicOff">🔇</span>
             <div class="row mt-5">
               <div class="col-md-12">
-                <h1 class="fw-bold text-center">Number Guessing Game 🔢</h1>
-                <p class="text-center">Is a game to test your luck if you can guess the random number!</p>
+                <h3 class="fw-bold text-center">Number Guessing Game 🔢</h3>
+                <p class="text-center pt-4">Is a game to test your luck if you can guess the random number! </p>
                 <span class="d-flex justify-content-center flex-row" id="buttons">
 
                 </span>
 
-                <div class="row mt-5">
+                <div class="row mt-3">
                   <div class="col-md-12 mx-auto">
                     <div class="card shadow-sm">
                       <div class="card-body mt-3">
@@ -42,14 +43,13 @@
                         <div class="card mx-auto">
                           <div class="card-body text-center" id="cardArea">
 
-                            <button
-                              class="btn btn-danger text-light rounded-pill px-4 me-3 mb-3" id="easyBtn">Easy</button>
+                            <button class="btn btn-danger text-light px-4 me-3 mb-3"
+                              id="easyBtn">Easy</button>
                             <div>
-                              <button
-                                class="btn btn-danger text-light rounded-pill px-4 me-3 mb-3"
+                              <button class="btn btn-danger text-light px-4 me-3 mb-3"
                                 id="moderateBtn">Moderate</button>
                               <div></div>
-                              <button class="btn btn-danger text-light rounded-pill px-4 me-3"
+                              <button class="btn btn-danger text-light px-4 me-3"
                                 id="hardBtn">Hard</button>
                             </div>
                           </div>
@@ -65,6 +65,7 @@
               <source src="de Blob - Blissful.mp3" type="audio/mp3">
             </audio>
 
+            <div class="modals">
             <!-- Modal Winner -->
             <div class="modal fade" id="winnerModal">
               <div class="modal-dialog modal-dialog-centered">
@@ -73,10 +74,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                   </div>
                   <div class="modal-body fs-1 text-center">
-                    You Won! 🎉🥂🍾
+                    You Won! <br>
+                    🎉🥂🍾
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="restartBtn">Want to play again?</button>
+                    <button type="button" class="btn btn-success" id="restartBtn">Play again.</button>
                   </div>
                 </div>
               </div>
@@ -93,7 +95,7 @@
                     ❌ Game Over!
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="loseRestartBtn">Restart Game</button>
+                    <button type="button" class="btn btn-secondary" id="loseRestartBtn">Restart Game.</button>
                   </div>
                 </div>
               </div>
@@ -108,7 +110,7 @@
                   </div>
                   <div class="modal-body">
                     <p class="text-center fs-1">❌</p>
-                    <p class="text-center fs-3">Only choose a number from 0 to 100!</p>
+                    <p class="text-center fs-3">Please select a number between 0 and 100 only.</p>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -126,7 +128,7 @@
                   </div>
                   <div class="modal-body">
                     <p class="text-center fs-1">❌</p>
-                    <p class="text-center fs-3">Only type numbers!</p>
+                    <p class="text-center fs-3">Please enter numeric values.</p>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -144,7 +146,7 @@
                   </div>
                   <div class="modal-body">
                     <p class="text-center fs-1">❌</p>
-                    <p class="text-center fs-3">Please enter something!</p>
+                    <p class="text-center fs-3">Field cannot be empty.</p>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -152,6 +154,7 @@
                 </div>
               </div>
             </div>
+          </div>
 
             <footer class="text-center mt-5 text-light">Developed by <b>Byron Oscar Dones</b></footer>
 
@@ -159,6 +162,10 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
               integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
               crossorigin="anonymous"></script>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 
 </html>
