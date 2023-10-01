@@ -67,15 +67,14 @@ function checkGuess() {
 
   if (inputValue === currentDifficulty.num) {
     //if correct
-    cardArea.innerHTML = `<div><p class="text-center fw-bold mt-4" style="font-size: 3rem;">🎉 You Won!</p><p class="text-center fw-bold" style="font-size: 10rem;">${inputValue}</p></div>`;
     const winnerModal = new bootstrap.Modal(
       document.getElementById("winnerModal")
     );
     winnerModal.show();
   } else if (inputValue > currentDifficulty.num) {
-    cardArea.innerHTML = `<div><p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔻Lower!</p><p class="text-center fw-bold" style="font-size: 10rem;">${inputValue}</p></div>`;
+    cardArea.innerHTML = `<div><p class="text-center fw-bold mt-4" style="font-size: 20px;">🔻Try Lower.</p><p class="text-center" style="font-size: 2rem;"> Your input:${inputValue}</p></div>`;
   } else if (inputValue < currentDifficulty.num) {
-    cardArea.innerHTML = `<div><p class="text-center fw-bold mt-4" style="font-size: 3rem;">🔺Higher!</p><p class="text-center fw-bold" style="font-size: 10rem;">${inputValue}</p></div>`;
+    cardArea.innerHTML = `<div><p class="text-center fw-bold mt-4" style="font-size: 20px;">🔺Try Higher.</p><p class="text-center" style="font-size: 2rem;">Your input: ${inputValue}</p></div>`;
   }
 
   inputNum.value = "";
@@ -90,7 +89,7 @@ function checkGuess() {
 
 //reset game
 function resetGame() {
-  window.location.href = "index.html";
+  window.location.href = "game-page-3.html";
 }
 
 //event listeners
